@@ -15,15 +15,15 @@ public class JpaMain {
         tx.begin(); // 트랜잭션 시작
 
         try {
-            Member1 member1 = new Member1();
-             // 비영속 상태
-            //member.setId(100L);
-            //member.setName("HelloJPA");
-            //영속 상태 진입 -> enityManger를 통해 엔티티가 관리됨
+            Team team = new Team();
+            team.setName("TeamA");
 
-            member1.setId(1L);
-            member1.setUsername("송민형");
-            em.persist(member1);
+            em.persist(team);
+
+            Member member = new Member();
+            member.setUsername("member1");
+            member.setTeam(team);
+
 
 
 
@@ -36,7 +36,7 @@ public class JpaMain {
         }
 
 
-        em.close();
+
         emf.close();
     }
 }
