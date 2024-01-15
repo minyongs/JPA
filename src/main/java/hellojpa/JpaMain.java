@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.util.List;
 
 public class JpaMain {
     public static void main(String[] args) {
@@ -23,6 +24,18 @@ public class JpaMain {
             Member member = new Member();
             member.setUsername("member1");
             member.setTeam(team);
+
+            em.flush();
+            em.clear();
+
+            Member findMember = em.find(Member.class , member.getId()); //멤버의 아이디 찾기
+            List<Member> members1 = findMember.getTeam().getMembers(); // 그 아이디를 가진 멤버의 팀의 멤버들 호출
+
+
+            for (Member member1 : members1) {
+                System.out.println("==============:" + members1);
+
+            }
 
 
 
