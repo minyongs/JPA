@@ -16,26 +16,17 @@ public class JpaMain {
         tx.begin(); // 트랜잭션 시작
 
         try {
-            Team team = new Team();
-            team.setName("TeamA");
+          Movie movie = new Movie();
+          movie.setActor("송민형");
+          movie.setDirector("감독");
+          movie.setName("인셉션");
 
-            em.persist(team);
+          movie.setPrice(10000);
 
-            Member member = new Member();
-            member.setUsername("member1");
-            member.setTeam(team);
-
-            em.flush();
-            em.clear();
-
-            Member findMember = em.find(Member.class , member.getId()); //멤버의 아이디 찾기
-            List<Member> members1 = findMember.getTeam().getMembers(); // 그 아이디를 가진 멤버의 팀의 멤버들 호출
+          em.persist(movie);
 
 
-            for (Member member1 : members1) {
-                System.out.println("==============:" + members1);
 
-            }
 
 
 
